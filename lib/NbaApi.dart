@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_app/model/Game.dart';
-import 'package:flutter_app/model/Month.dart';
+import 'package:nba_games/model/Game.dart';
+import 'package:nba_games/model/Month.dart';
 import 'package:http/http.dart' as http;
 
 class NbaApi {

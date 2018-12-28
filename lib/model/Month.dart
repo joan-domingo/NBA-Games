@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/Game.dart';
+import 'package:nba_games/model/Game.dart';
 
 class Month {
   final List<Game> games;

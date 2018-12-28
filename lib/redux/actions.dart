@@ -1,4 +1,4 @@
-import 'package:flutter_app/NbaApi.dart';
+import 'package:nba_games/NbaApi.dart';
 
 class FetchGamesAction {}
 
