@@ -37,14 +37,21 @@ class GameListWidget extends StatelessWidget {
   }
 
   Widget _buildRow(Game game) {
-    return ListTile(
-      leading: Text(game.id),
-      title: Text(
-        "${game.vTeam}-${game.hTeam}",
-        style: _biggerFont,
-        textAlign: TextAlign.center,
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Text(
+            "${game.vTeam}-${game.hTeam}",
+            style: _biggerFont,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            game.location,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
-      trailing: Text(game.location),
     );
   }
 }
