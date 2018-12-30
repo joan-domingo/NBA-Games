@@ -28,7 +28,7 @@ class GameListWidget extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               separatorBuilder: (context, i) => Divider(),
               itemCount: games.length,
-              itemBuilder: (context, i) => _buildRow(games[i]),
+              itemBuilder: (context, i) => _buildRow(games[i], context),
             ),
             onRefresh: () {
               refreshGames();
@@ -36,21 +36,24 @@ class GameListWidget extends StatelessWidget {
             });
   }
 
-  Widget _buildRow(Game game) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Text(
-            '${game.vTeam} ${game.vScore} - ${game.hScore} ${game.hTeam}',
-            style: _biggerFont,
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            '${game.venue} (${game.city})',
-            textAlign: TextAlign.center,
-          ),
-        ],
+  Widget _buildRow(Game game, BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, '/gameDetails'),
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              '${game.vTeam} ${game.vScore} - ${game.hScore} ${game.hTeam}',
+              style: _biggerFont,
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              '${game.venue} (${game.city})',
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }

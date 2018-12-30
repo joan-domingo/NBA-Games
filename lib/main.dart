@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:nba_games/AppState.dart';
+import 'package:nba_games/View/GameDetails.dart';
 import 'package:nba_games/View/HomeScreen.dart';
 import 'package:nba_games/configureMiddleware.dart';
 import 'package:nba_games/redux/actions.dart';
@@ -25,7 +26,12 @@ class NbaGamesApp extends StatelessWidget {
           title: 'NBA games',
           home: new StoreBuilder<AppState>(
               onInit: (store) => store.dispatch(new FetchGamesAction()),
-              builder: (context, store) => new HomeScreen())),
+              builder: (context, store) => new HomeScreen()
+          ),
+        routes: {
+          '/gameDetails': (context) => GameDetails(),
+        },
+      ),
     );
   }
 }
