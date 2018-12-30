@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:nba_games/AppRoutes.dart';
 import 'package:nba_games/AppState.dart';
 import 'package:nba_games/View/GameDetails.dart';
-import 'package:nba_games/View/HomeScreen.dart';
+import 'package:nba_games/View/GameListScreen.dart';
 import 'package:nba_games/configureMiddleware.dart';
-import 'package:nba_games/redux/actions.dart';
 import 'package:nba_games/redux/reducers.dart';
 import 'package:redux/redux.dart';
 
@@ -23,13 +23,13 @@ class NbaGamesApp extends StatelessWidget {
     return StoreProvider(
       store: store,
       child: new MaterialApp(
-          title: 'NBA games',
-          home: new StoreBuilder<AppState>(
-              onInit: (store) => store.dispatch(new FetchGamesAction()),
-              builder: (context, store) => new HomeScreen()
-          ),
+        title: 'NBA games',
+        //home: new StoreBuilder<AppState>(onInit: (store) => store.dispatch
+        //(new FetchGamesAction()),
+        initialRoute: AppRoutes.gameList,
         routes: {
-          '/gameDetails': (context) => GameDetails(),
+          AppRoutes.gameList: (context) => GameListScreen(),
+          AppRoutes.gameDetails: (context) => GameDetailsScreen(),
         },
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -7,6 +8,17 @@ import 'package:nba_games/model/Game.dart';
 import 'package:nba_games/redux/actions.dart';
 import 'package:nba_games/redux/selectors.dart';
 import 'package:redux/redux.dart';
+
+class GameListScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: new AppBar(
+          title: new Text('Games'),
+        ),
+        body: GameList());
+  }
+}
 
 class GameList extends StatelessWidget {
   @override
@@ -21,6 +33,9 @@ class GameList extends StatelessWidget {
             refreshGames: vm.refreshGames,
             fetchGamesAction: vm.fetchGamesAction);
       },
+      onInit: (store) {
+        store.dispatch(FetchGamesAction());
+      },
     );
   }
 }
@@ -31,11 +46,12 @@ class _ViewModel {
   final Function() refreshGames;
   final FetchGamesAction fetchGamesAction;
 
-  _ViewModel(
-      {@required this.games,
-      @required this.isLoadingGames,
-      @required this.refreshGames,
-      @required this.fetchGamesAction});
+  _ViewModel({
+    @required this.games,
+    @required this.isLoadingGames,
+    @required this.refreshGames,
+    @required this.fetchGamesAction,
+  });
 
   static _ViewModel fromStore(Store<AppState> store) {
     final fetchGamesAction = FetchGamesAction();
