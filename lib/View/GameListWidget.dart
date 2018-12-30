@@ -42,12 +42,12 @@ class GameListWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "${game.vTeam}-${game.hTeam}",
+            '${game.vTeam} ${game.vScore} - ${game.hScore} ${game.hTeam}',
             style: _biggerFont,
             textAlign: TextAlign.center,
           ),
           Text(
-            game.location,
+            '${game.venue} (${game.city})',
             textAlign: TextAlign.center,
           ),
         ],
