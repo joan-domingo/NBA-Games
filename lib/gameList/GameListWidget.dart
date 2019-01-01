@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nba_games/AppRoutes.dart';
+import 'package:nba_games/gameList/gameList.redux.dart';
+import 'package:nba_games/shared/model/Game.dart';
 import 'package:nba_games/shared/widget/LoadingIndicatorWidget.dart';
-import 'package:nba_games/model/Game.dart';
-import 'package:nba_games/redux/actions.dart';
 
 class GameListWidget extends StatelessWidget {
   final _biggerFont = const TextStyle(fontSize: 18.0);

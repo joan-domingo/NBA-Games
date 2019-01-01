@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:nba_games/AppState.dart';
 import 'package:nba_games/gameList/GameListWidget.dart';
-import 'package:nba_games/model/Game.dart';
-import 'package:nba_games/redux/actions.dart';
-import 'package:nba_games/redux/selectors.dart';
+import 'package:nba_games/gameList/gameList.redux.dart';
+import 'package:nba_games/root.redux.dart';
+import 'package:nba_games/shared/model/Game.dart';
 import 'package:redux/redux.dart';
 
 class GameListScreen extends StatelessWidget {

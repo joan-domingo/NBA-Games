@@ -1,4 +1,4 @@
-import 'package:nba_games/model/Game.dart';
+import 'package:nba_games/shared/model/Game.dart';
 
 class Month {
   final List<Game> games;

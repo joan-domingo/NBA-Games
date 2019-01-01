@@ -2,19 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:nba_games/AppRoutes.dart';
-import 'package:nba_games/AppState.dart';
+import 'package:nba_games/configureMiddleware.dart';
 import 'package:nba_games/gameDetails/GameDetailsScreen.dart';
 import 'package:nba_games/gameList/GameListScreen.dart';
-import 'package:nba_games/configureMiddleware.dart';
-import 'package:nba_games/redux/reducers.dart';
+import 'package:nba_games/root.redux.dart';
 import 'package:redux/redux.dart';
 
 void main() => runApp(NbaGamesApp());
 
 class NbaGamesApp extends StatelessWidget {
   final store = new Store<AppState>(
-    appStateReducers,
-    initialState: AppState.loading(),
+    appReducer,
+    initialState: AppState.initialState(),
     middleware: configureMiddleware(),
   );
 

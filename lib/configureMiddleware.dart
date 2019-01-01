@@ -1,6 +1,6 @@
-import 'package:nba_games/AppState.dart';
 import 'package:nba_games/NbaApi.dart';
-import 'package:nba_games/redux/epics.dart';
+import 'package:nba_games/gameList/gameList.redux.dart';
+import 'package:nba_games/root.redux.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 
