@@ -23,7 +23,7 @@ class GameListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isLoadingGames
-        ? LoadingIndicator()
+        ? LoadingIndicatorWidget()
         : RefreshIndicator(
             child: ListView.separated(
               separatorBuilder: (context, i) => Divider(),

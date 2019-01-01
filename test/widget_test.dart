@@ -7,11 +7,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:nba_games/main.dart';
+import 'package:nba_games/shared/widget/LoadingIndicatorWidget.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Test something', (WidgetTester tester) async {
+    Widget loadingIndicatorWidget = LoadingIndicatorWidget();
+
+    await tester.pumpWidget(loadingIndicatorWidget);
+
+    expect(find.byWidget(loadingIndicatorWidget), findsOneWidget);
+  });
+
+  /*testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(NbaGamesApp());
 
@@ -26,5 +33,5 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
-  });
+  });*/
 }
