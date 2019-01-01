@@ -1,6 +1,4 @@
 # Flutter build
-variables:
-  projectDirectory: NBA-Games
 
 jobs:
   - job: Android
@@ -11,10 +9,7 @@ jobs:
     - task: FlutterBuild@0
       inputs:
         target: apk
-        projectDirectory: $(projectDirectory)
     - task: FlutterTest@0
-      inputs:
-        projectDirectory: $(projectDirectory)
     - task: CopyFiles@2
       inputs:
         contents: '**/*.apk'
