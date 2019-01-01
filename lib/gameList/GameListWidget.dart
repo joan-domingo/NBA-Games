@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nba_games/AppRoutes.dart';
-import 'package:nba_games/View/LoadingIndicator.dart';
+import 'package:nba_games/shared/widget/LoadingIndicatorWidget.dart';
 import 'package:nba_games/model/Game.dart';
 import 'package:nba_games/redux/actions.dart';
 
