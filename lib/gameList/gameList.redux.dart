@@ -26,9 +26,9 @@ class FetchGamesAction {
 }
 
 class FetchGamesSucceededAction {
-  final FetchedGamesResult fetchedGamesResult;
+  final List<Game> games;
 
-  FetchGamesSucceededAction(this.fetchedGamesResult);
+  FetchGamesSucceededAction(this.games);
 }
 
 class FetchGamesFailedAction {}
@@ -46,7 +46,7 @@ class FetchGamesEpic implements EpicClass<AppState> {
         .ofType(TypeToken<FetchGamesAction>())
         .asyncMap((action) => this.api.fetchGames().then((response) {
               action.completer.complete();
-              return new FetchGamesSucceededAction(response);
+              return new FetchGamesSucceededAction(response.games);
             }).catchError(() => new FetchGamesFailedAction()));
   }
 }
@@ -70,12 +70,11 @@ GameListState _setLoadingGamesFlag(GameListState state, bool isLoading) {
 
 GameListState _loadGames(
     GameListState state, FetchGamesSucceededAction action) {
-  List<Game> games = action.fetchedGamesResult.games;
-  return new GameListState(games: games, isLoadingGames: false);
+  return new GameListState(games: action.games, isLoadingGames: false);
 }
 
 // Selectors
 
-List<Game> selectGames(AppState state) => state.gameListState.games;
+List<Game> selectGames(GameListState state) => state.games;
 
-bool selectIsLoadingGames(AppState state) => state.gameListState.isLoadingGames;
+bool selectIsLoadingGames(GameListState state) => state.isLoadingGames;

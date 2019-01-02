@@ -47,14 +47,16 @@ class _ViewModel {
   });
 
   static _ViewModel fromStore(Store<AppState> store) {
+    final gameListState = store.state.gameListState;
+
     final fetchGamesAction = FetchGamesAction();
     _refreshGames() {
       store.dispatch(fetchGamesAction);
     }
 
     return _ViewModel(
-        games: selectGames(store.state),
-        isLoadingGames: selectIsLoadingGames(store.state),
+        games: selectGames(gameListState),
+        isLoadingGames: selectIsLoadingGames(gameListState),
         refreshGames: _refreshGames,
         fetchGamesAction: fetchGamesAction);
   }
