@@ -23,7 +23,7 @@ class GameListScreen extends StatelessWidget {
               games: vm.games,
               isLoadingGames: vm.isLoadingGames,
               refreshGames: vm.refreshGames,
-              fetchGamesAction: vm.fetchGamesAction);
+              refreshGamesAction: vm.refreshGamesAction);
         },
         onInit: (store) {
           store.dispatch(FetchGamesAction());
@@ -37,27 +37,27 @@ class _ViewModel {
   final List<Game> games;
   final bool isLoadingGames;
   final Function() refreshGames;
-  final FetchGamesAction fetchGamesAction;
+  final RefreshGamesAction refreshGamesAction;
 
   _ViewModel({
     @required this.games,
     @required this.isLoadingGames,
     @required this.refreshGames,
-    @required this.fetchGamesAction,
+    @required this.refreshGamesAction,
   });
 
   static _ViewModel fromStore(Store<AppState> store) {
     final gameListState = store.state.gameListState;
 
-    final fetchGamesAction = FetchGamesAction();
+    final refreshGamesAction = RefreshGamesAction();
     _refreshGames() {
-      store.dispatch(fetchGamesAction);
+      store.dispatch(refreshGamesAction);
     }
 
     return _ViewModel(
         games: selectGames(gameListState),
         isLoadingGames: selectIsLoadingGames(gameListState),
         refreshGames: _refreshGames,
-        fetchGamesAction: fetchGamesAction);
+        refreshGamesAction: refreshGamesAction);
   }
 }

@@ -11,13 +11,13 @@ class GameListWidget extends StatelessWidget {
   final List<Game> games;
   final bool isLoadingGames;
   final Function() refreshGames;
-  final FetchGamesAction fetchGamesAction;
+  final RefreshGamesAction refreshGamesAction;
 
   GameListWidget({
     @required this.games,
     @required this.isLoadingGames,
     @required this.refreshGames,
-    @required this.fetchGamesAction,
+    @required this.refreshGamesAction,
   });
 
   @override
@@ -32,7 +32,7 @@ class GameListWidget extends StatelessWidget {
             ),
             onRefresh: () {
               refreshGames();
-              return fetchGamesAction.completer.future;
+              return refreshGamesAction.completer.future;
             });
   }
 

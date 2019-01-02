@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:nba_games/NbaApi.dart';
 import 'package:nba_games/root.redux.dart';
 import 'package:nba_games/shared/model/Game.dart';
+import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -18,12 +19,7 @@ class GameListState {
 
 // Actions
 
-class FetchGamesAction {
-  final Completer<Null> completer;
-
-  FetchGamesAction({Completer completer})
-      : this.completer = completer ?? Completer<Null>();
-}
+class FetchGamesAction {}
 
 class FetchGamesSucceededAction {
   final List<Game> games;
@@ -32,6 +28,13 @@ class FetchGamesSucceededAction {
 }
 
 class FetchGamesFailedAction {}
+
+class RefreshGamesAction {
+  final Completer<Null> completer;
+
+  RefreshGamesAction({Completer completer})
+      : this.completer = completer ?? Completer<Null>();
+}
 
 // Epics
 
@@ -45,11 +48,33 @@ class FetchGamesEpic implements EpicClass<AppState> {
     return Observable(actions)
         .ofType(TypeToken<FetchGamesAction>())
         .asyncMap((action) => this.api.fetchGames().then((response) {
+              return new FetchGamesSucceededAction(response.games);
+            }).catchError(() => new FetchGamesFailedAction()));
+  }
+}
+
+class RefreshGamesEpic implements EpicClass<AppState> {
+  final NbaApi api;
+
+  RefreshGamesEpic(this.api);
+
+  @override
+  Stream call(Stream actions, EpicStore<AppState> store) {
+    return Observable(actions)
+        .ofType(TypeToken<RefreshGamesAction>())
+        .asyncMap((action) => this.api.fetchGames().then((response) {
               action.completer.complete();
               return new FetchGamesSucceededAction(response.games);
             }).catchError(() => new FetchGamesFailedAction()));
   }
 }
+
+final _apiClient = NbaApi();
+
+final List<Middleware<AppState>> gameListEpics = [
+  EpicMiddleware<AppState>(FetchGamesEpic(_apiClient)),
+  EpicMiddleware<AppState>(RefreshGamesEpic(_apiClient)),
+];
 
 // Reducers
 
