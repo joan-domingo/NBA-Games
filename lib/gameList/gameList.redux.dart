@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:nba_games/NbaApi.dart';
 import 'package:nba_games/root.redux.dart';
 import 'package:nba_games/shared/model/Game.dart';
-import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -68,13 +67,6 @@ class RefreshGamesEpic implements EpicClass<AppState> {
             }).catchError(() => new FetchGamesFailedAction()));
   }
 }
-
-final _apiClient = NbaApi();
-
-final List<Middleware<AppState>> gameListEpics = [
-  EpicMiddleware<AppState>(FetchGamesEpic(_apiClient)),
-  EpicMiddleware<AppState>(RefreshGamesEpic(_apiClient)),
-];
 
 // Reducers
 

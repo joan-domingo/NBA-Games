@@ -10,7 +10,7 @@ class NbaApi {
 
   Future<FetchedGamesResult> fetchGames() async {
     final response = await http.get(baseUrl);
-    return new FetchedGamesResult.fromJson(json.decode(response.body));
+    return FetchedGamesResult.fromJson(json.decode(response.body));
   }
 }
 
