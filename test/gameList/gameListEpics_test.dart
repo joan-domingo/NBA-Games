@@ -7,8 +7,6 @@ import 'package:nba_games/shared/model/Game.dart';
 import 'package:redux/redux.dart';
 import 'package:test_api/test_api.dart';
 
-@Skip('can\t find a way to test middleware epics')
-
 final dummyGame = Game(
   'id',
   'city',
@@ -41,6 +39,6 @@ main() {
 
       verify(api.fetchGames());
       expect(selectGames(store.state.gameListState), [dummyGame]);
-    });
+    }, skip: 'can\t find a way to test middleware epics');
   });
 }
