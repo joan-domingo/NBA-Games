@@ -16,11 +16,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_redux: 0.5.2
+  flutter_redux: 0.5.3
   async: 2.0.8
-  redux_epics: 0.10.2
-  rxdart: 0.18.0
-  http: 0.12.0
+  redux_epics: 0.10.3
+  rxdart: 0.20.0
+  http: 0.12.0+1
   redux_logging: 0.3.0
 
   # The following adds the Cupertino Icons font to your application.
