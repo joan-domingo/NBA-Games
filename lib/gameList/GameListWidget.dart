@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nba_games/AppRoutes.dart';
+import 'package:nba_games/gameDetails/GameDetailsScreen.dart';
 import 'package:nba_games/gameList/gameList.redux.dart';
 import 'package:nba_games/shared/model/Game.dart';
 import 'package:nba_games/shared/widget/LoadingIndicatorWidget.dart';
@@ -38,7 +38,11 @@ class GameListWidget extends StatelessWidget {
 
   Widget _buildRow(Game game, BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, AppRoutes.gameDetails),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => GameDetailsScreen(gameId: game.id),
+          )),
       child: Container(
         padding: const EdgeInsets.all(8.0),
         child: Column(

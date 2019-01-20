@@ -16,14 +16,15 @@ class GameListScreen extends StatelessWidget {
         title: new Text('Games'),
       ),
       body: StoreConnector<AppState, _ViewModel>(
-        distinct: true,
+        // distinct: true,
         converter: _ViewModel.fromStore,
         builder: (context, vm) {
           return GameListWidget(
-              games: vm.games,
-              isLoadingGames: vm.isLoadingGames,
-              refreshGames: vm.refreshGames,
-              refreshGamesAction: vm.refreshGamesAction);
+            games: vm.games,
+            isLoadingGames: vm.isLoadingGames,
+            refreshGames: vm.refreshGames,
+            refreshGamesAction: vm.refreshGamesAction,
+          );
         },
         onInit: (store) {
           store.dispatch(FetchGamesAction());
