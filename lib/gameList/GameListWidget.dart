@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nba_games/gameDetails/GameDetailsScreen.dart';
+import 'package:nba_games/gameList/GameListViewModel.dart';
 import 'package:nba_games/gameList/gameList.redux.dart';
 import 'package:nba_games/shared/model/Game.dart';
 import 'package:nba_games/shared/widget/LoadingIndicatorWidget.dart';
@@ -8,20 +9,17 @@ import 'package:nba_games/shared/widget/LoadingIndicatorWidget.dart';
 class GameListWidget extends StatelessWidget {
   final _biggerFont = const TextStyle(fontSize: 18.0);
 
-  final List<Game> games;
-  final bool isLoadingGames;
-  final Function() refreshGames;
-  final RefreshGamesAction refreshGamesAction;
+  final GameListViewModel vm;
 
-  GameListWidget({
-    @required this.games,
-    @required this.isLoadingGames,
-    @required this.refreshGames,
-    @required this.refreshGamesAction,
-  });
+  GameListWidget({@required this.vm});
 
   @override
   Widget build(BuildContext context) {
+    final List<Game> games = this.vm.games;
+    final bool isLoadingGames = this.vm.isLoadingGames;
+    final Function() refreshGames = this.vm.refreshGames;
+    final RefreshGamesAction refreshGamesAction = this.vm.refreshGamesAction;
+
     return isLoadingGames
         ? LoadingIndicatorWidget()
         : RefreshIndicator(

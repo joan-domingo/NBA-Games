@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nba_games/shared/model/Game.dart';
+import 'package:nba_games/gameDetails/GameDetailsViewModel.dart';
 
 class GameDetailsWidget extends StatelessWidget {
   final _biggerFont = const TextStyle(fontSize: 40.0);
 
-  final Game game;
+  final GameDetailsViewModel vm;
 
-  GameDetailsWidget({@required this.game});
+  GameDetailsWidget({@required this.vm});
 
   @override
   Widget build(BuildContext context) {
+    final game = this.vm.game;
     return Scaffold(
       body: SizedBox.expand(
         child: Container(
