@@ -13,6 +13,15 @@ class GameListScreen extends StatelessWidget {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Games'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.scanner,
+              color: Colors.white,
+            ),
+            onPressed: _showNativeView,
+          ),
+        ],
       ),
       body: StoreConnector<AppState, GameListViewModel>(
         // distinct: true,
@@ -26,4 +35,6 @@ class GameListScreen extends StatelessWidget {
       ),
     );
   }
+
+  Future<Null> _showNativeView() async {}
 }
