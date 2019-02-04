@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:nba_games/camera/CameraScreen.dart';
 import 'package:nba_games/gameList/GameListViewModel.dart';
 import 'package:nba_games/gameList/GameListWidget.dart';
 import 'package:nba_games/gameList/gameList.redux.dart';
@@ -16,10 +17,11 @@ class GameListScreen extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              Icons.scanner,
+              Icons.camera,
               color: Colors.white,
             ),
-            onPressed: _showNativeView,
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => CameraScreen())),
           ),
         ],
       ),
@@ -35,6 +37,4 @@ class GameListScreen extends StatelessWidget {
       ),
     );
   }
-
-  Future<Null> _showNativeView() async {}
 }
