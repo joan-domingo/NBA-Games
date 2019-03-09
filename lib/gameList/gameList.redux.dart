@@ -48,7 +48,7 @@ class FetchGamesEpic implements EpicClass<AppState> {
         .ofType(TypeToken<FetchGamesAction>())
         .asyncMap((action) => this.api.fetchGames().then((response) {
               return new FetchGamesSucceededAction(response.games);
-            }).catchError(() => new FetchGamesFailedAction()));
+            }).catchError((e) => FetchGamesFailedAction()));
   }
 }
 

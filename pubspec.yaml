@@ -10,7 +10,7 @@ description: A Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -18,11 +18,11 @@ dependencies:
 
   flutter_redux: 0.5.3
   async: 2.0.8
-  redux_epics: 0.10.3
+  redux_epics: 0.10.4
   rxdart: 0.20.0
   http: 0.12.0+1
   redux_logging: 0.3.0
-  camera: 0.3.0
+  camera: 0.4.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
