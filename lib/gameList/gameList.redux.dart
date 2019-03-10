@@ -48,9 +48,25 @@ class FetchGamesEpic implements EpicClass<AppState> {
         .ofType(TypeToken<FetchGamesAction>())
         .asyncMap((action) => this.api.fetchGames().then((response) {
               return new FetchGamesSucceededAction(response.games);
-            }).catchError((e) => FetchGamesFailedAction()));
+            }).catchError((e) => new FetchGamesFailedAction()));
   }
 }
+
+/*
+// Functional epic
+Epic<AppState> fetchGamesEpic(NbaApi api) {
+  return (Stream<dynamic> actions, EpicStore<AppState> store) async* {
+    Observable(actions)
+        .ofType(TypeToken<FetchGamesAction>())
+        .asyncMap((action) {
+      print('hello');
+      return api.fetchGames().then((response) {
+        return new FetchGamesSucceededAction(response.games);
+      }).catchError((e) => new FetchGamesFailedAction());
+    });
+  };
+}
+*/
 
 class RefreshGamesEpic implements EpicClass<AppState> {
   final NbaApi api;
@@ -64,7 +80,7 @@ class RefreshGamesEpic implements EpicClass<AppState> {
         .asyncMap((action) => this.api.fetchGames().then((response) {
               action.completer.complete();
               return new FetchGamesSucceededAction(response.games);
-            }).catchError(() => new FetchGamesFailedAction()));
+            }).catchError((e) => new FetchGamesFailedAction()));
   }
 }
 
