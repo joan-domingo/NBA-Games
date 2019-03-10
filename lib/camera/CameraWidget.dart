@@ -1,13 +1,13 @@
 import 'package:camera/camera.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:nba_games/main.dart';
 
 class CameraWidget extends StatefulWidget {
   @override
-  _CameraAppState createState() => _CameraAppState();
+  CameraWidgetState createState() => CameraWidgetState();
 }
 
-class _CameraAppState extends State<CameraWidget> {
+class CameraWidgetState extends State<CameraWidget> {
   CameraController controller;
 
   @override
